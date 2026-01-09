@@ -6,24 +6,24 @@ from agents import AgentHandler
 from warnings import filterwarnings
 filterwarnings('ignore')
 
-vectordb_handler = VectorDBHandler
+vectordb_handler = VectorDBHandler()
+
 
 def init_agent():
     #  Load vector db and ingest doc if needed
 
+    tools, middleware = get_tools()
 
-    tools = get_tools()
-
-    agent = AgentHandler(tools)
+    agent = AgentHandler(tools, middleware)
     return agent
+
 
 def insert_new_document(uploaded_file):
     file_path = os.path.join("./docs", uploaded_file.name)
-    with open(file_path, "wb") as f:        
+    with open(file_path, "wb") as f:
         f.write(uploaded_file.read())
-    
+
     vectordb_handler.ingest_uploaded_file(file_path)
-    
 
 
 # if __name__ == "__main__":
