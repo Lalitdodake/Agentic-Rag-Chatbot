@@ -1,10 +1,10 @@
 # ----------------------------
 # Core LLM & Agentic Framework
 # ----------------------------
-langchain==0.3.26
-langchain-community==0.3.27
-langchain-chroma==0.2.5
-langchain-huggingface==0.0.3
+# langchain
+# langchain-community
+# langchain-chroma
+# langchain-huggingface
 
 
 # Embeddings + Transformers
