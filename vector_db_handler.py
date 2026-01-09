@@ -22,7 +22,7 @@ class VectorDBHandler:
             os.makedirs(self.persist_directory)
 
         # Load existing DB if present
-        if os.listdir(self.persist_directory) and self.vectorstore is not None:  # Check if it already has data
+        if os.listdir(self.persist_directory):  # Check if it already has data
             self.vectorstore = Chroma(
                 collection_name="development",
                 persist_directory=self.persist_directory,
