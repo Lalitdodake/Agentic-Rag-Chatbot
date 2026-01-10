@@ -1,5 +1,3 @@
-# from langchain_community.vectorstores import Chroma
-
 from langchain_chroma import Chroma
 import os
 from models import embedding_model
@@ -13,6 +11,7 @@ def get_file_name(file_path):
 
 class VectorDBHandler:
     def __init__(self, persist_directory="./chroma_vector_store"):
+        print("Loading Vector DB---------------------------------------")
         self.persist_directory = persist_directory
         self.embedding = embedding_model
         self.vectorstore = None
@@ -22,7 +21,7 @@ class VectorDBHandler:
             os.makedirs(self.persist_directory)
 
         # Load existing DB if present
-        if os.listdir(self.persist_directory) and self.vectorstore is not None:  # Check if it already has data
+        if os.listdir(self.persist_directory):  # Check if it already has data
             self.vectorstore = Chroma(
                 collection_name="development",
                 persist_directory=self.persist_directory,
