@@ -1,7 +1,6 @@
 from langchain.agents import create_agent
-from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain.messages import SystemMessage, HumanMessage
+from langchain.messages import  HumanMessage
 
 
 from models import llm_model
