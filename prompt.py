@@ -1,4 +1,3 @@
-# from langchain.prompts import ChatPromptTemplate
 from langchain.messages import SystemMessage
 
 chat_prompt = SystemMessage(
