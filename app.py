@@ -1,66 +1,93 @@
 import streamlit as st
 import os
 from tools_main import init_agent, insert_new_document
+import uuid
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 
-st.set_page_config(page_title="AI Agent", layout="wide")
-st.title("Agentic Chatbot with RAG + Tools + PDF Upload")
-
-# Initialize Agent
-agent = init_agent()
-
-print("Loading Code------------------------------------------------------------------------")
-
-# uploaded documents list
-st.subheader('Already Uploaded Documents')
-already_uploaded_file= []
-
-document_store_path = './docs'
-
-if not os.path.exists(document_store_path):
-    os.makedirs(document_store_path)
-
-for files in os.listdir(document_store_path):
-    already_uploaded_file.append(files)
+print("Loading App File-------------------------")
+config = {"configurable": {"thread_id": str(uuid.uuid4()).split('-')[1]}}
 
 
-# print(already_uploaded_file)
-st.write(already_uploaded_file)
+# ---------------- Page Config ----------------
+st.set_page_config(
+    page_title="Agentic RAG Chatbot",
+    layout="wide"
+)
+
+st.title("🤖 Agentic Chatbot")
 
 
-# Upload PDFs
-st.subheader(" Upload Documents")
-uploaded_files = st.file_uploader("Upload one or more PDF files", type=["pdf"], accept_multiple_files=True)
+# ---------------- Initialize Agent ----------------
+@st.cache_resource
+def load_agent():
+    return init_agent()
 
-print("Uploaded file===", uploaded_files)
-if uploaded_files:
+agent = load_agent()
 
-    os.makedirs("./docs", exist_ok=True)
-    for uploaded_file in uploaded_files:
-        insert_new_document(uploaded_file)
-        print("\nFile uploaded=================", uploaded_file)
-    st.success(f"{len(uploaded_files)} PDF(s) uploaded and indexed successfully!")
-
-
-st.divider()
-
-st.subheader("Chat with AI Agent")
+# ---------------- Session State ----------------
 if "chat_history" not in st.session_state:
-    st.session_state["chat_history"] = []
+    st.session_state.chat_history = []
 
-query = st.text_input("Ask me anything:")
+# ---------------- Sidebar: Document Section ----------------
+with st.sidebar:
+    # ---------------- New Chat ----------------
+    if st.button("🆕 New Chat", use_container_width=True):
+        st.session_state.chat_history = []
+        config = {"configurable": {"thread_id": uuid.uuid4()}}
+        st.rerun()
 
-if st.button("Submit") and query:
-    with st.spinner("Thinking..."):
-        answer = agent.run(query)
-        print("Answer", answer)
-        ai_response = answer['messages'][-1].content
-        final_answer = ai_response.split("Final Answer:")[-1].strip()
-        st.session_state["chat_history"].append((query, final_answer))
-        st.success(final_answer)
+    st.divider()
 
-# Display Chat History
-st.subheader(" Chat History")
-for q, a in st.session_state["chat_history"]:
-    st.write(f"**You:** {q}")
-    st.write(f"**Agent:** {a}")
+    # ---------------- Documents ----------------
+    st.header("📄 Documents")
+
+    document_store_path = "./docs"
+    os.makedirs(document_store_path, exist_ok=True)
+
+    st.subheader("Uploaded Files")
+    docs = os.listdir(document_store_path)
+    if docs:
+        for doc in docs:
+            st.write(f"• {doc}")
+    else:
+        st.info("No documents uploaded")
+
+    st.divider()
+
+    st.subheader("Upload PDFs")
+    uploaded_files = st.file_uploader(
+        "Upload documents",
+        type=["pdf"],
+        accept_multiple_files=True
+    )
+
+    if uploaded_files:
+        for uploaded_file in uploaded_files:
+            insert_new_document(uploaded_file)
+        st.success(f"{len(uploaded_files)} file(s) indexed")
+# ---------------- Chat Area ----------------
+st.subheader("💬 Chat")
+
+for user_msg, ai_msg in st.session_state.chat_history:
+    with st.chat_message("user"):
+        st.markdown(user_msg)
+    with st.chat_message("assistant"):
+        st.markdown(ai_msg)
+
+query = st.chat_input("Ask me anything...")
+
+print("Config======", config)
+if query:
+    with st.chat_message("user"):
+        st.markdown(query)
+
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            answer = agent.run(query, config)
+            ai_response = answer["messages"][-1].content
+            final_answer = ai_response.split("Final Answer:")[-1].strip()
+            st.markdown(final_answer)
+
+    st.session_state.chat_history.append((query, final_answer))
