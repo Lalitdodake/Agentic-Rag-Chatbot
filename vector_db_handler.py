@@ -1,5 +1,3 @@
-# from langchain_community.vectorstores import Chroma
-
 from langchain_chroma import Chroma
 import os
 from models import embedding_model
@@ -13,6 +11,7 @@ def get_file_name(file_path):
 
 class VectorDBHandler:
     def __init__(self, persist_directory="./chroma_vector_store"):
+        print("Loading Vector DB---------------------------------------")
         self.persist_directory = persist_directory
         self.embedding = embedding_model
         self.vectorstore = None

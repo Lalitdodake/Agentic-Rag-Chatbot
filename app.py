@@ -1,7 +1,7 @@
 import streamlit as st
 import os
-from main import init_agent, insert_new_document
-# from vector_db_handler import VectorDBHandler
+from tools_main import init_agent, insert_new_document
+
 
 st.set_page_config(page_title="AI Agent", layout="wide")
 st.title("Agentic Chatbot with RAG + Tools + PDF Upload")
@@ -9,6 +9,7 @@ st.title("Agentic Chatbot with RAG + Tools + PDF Upload")
 # Initialize Agent
 agent = init_agent()
 
+print("Loading Code------------------------------------------------------------------------")
 
 # uploaded documents list
 st.subheader('Already Uploaded Documents')
@@ -22,6 +23,7 @@ if not os.path.exists(document_store_path):
 for files in os.listdir(document_store_path):
     already_uploaded_file.append(files)
 
+
 # print(already_uploaded_file)
 st.write(already_uploaded_file)
 
@@ -30,7 +32,7 @@ st.write(already_uploaded_file)
 st.subheader(" Upload Documents")
 uploaded_files = st.file_uploader("Upload one or more PDF files", type=["pdf"], accept_multiple_files=True)
 
-
+print("Uploaded file===", uploaded_files)
 if uploaded_files:
 
     os.makedirs("./docs", exist_ok=True)
