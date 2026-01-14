@@ -1,14 +1,12 @@
 import streamlit as st
-import os
-from tools_main import init_agent, insert_new_document
 import uuid
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
+import requests
 
 print("Loading App File-------------------------")
-config = {"configurable": {"thread_id": str(uuid.uuid4()).split('-')[1]}}
 
+API_URL = "http://localhost:8211"
 
 # ---------------- Page Config ----------------
 st.set_page_config(
@@ -19,23 +17,20 @@ st.set_page_config(
 st.title("🤖 Agentic Chatbot")
 
 
-# ---------------- Initialize Agent ----------------
-@st.cache_resource
-def load_agent():
-    return init_agent()
-
-agent = load_agent()
-
 # ---------------- Session State ----------------
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = str(uuid.uuid4()).split('-')[1]
+
+print("Thread Id========", st.session_state.thread_id)
 # ---------------- Sidebar: Document Section ----------------
 with st.sidebar:
     # ---------------- New Chat ----------------
     if st.button("🆕 New Chat", use_container_width=True):
         st.session_state.chat_history = []
-        config = {"configurable": {"thread_id": uuid.uuid4()}}
+        st.session_state.thread_id = str(uuid.uuid4()).split('-')[1]
         st.rerun()
 
     st.divider()
@@ -64,9 +59,13 @@ with st.sidebar:
     )
 
     if uploaded_files:
-        for uploaded_file in uploaded_files:
-            insert_new_document(uploaded_file)
+        for file in uploaded_files:
+            files = {"file": (file.name, file, "application/pdf")}
+            requests.post(f"{API_URL}/insert-document", files=files)
+
         st.success(f"{len(uploaded_files)} file(s) indexed")
+
+
 # ---------------- Chat Area ----------------
 st.subheader("💬 Chat")
 
@@ -76,18 +75,25 @@ for user_msg, ai_msg in st.session_state.chat_history:
     with st.chat_message("assistant"):
         st.markdown(ai_msg)
 
+print("Chat Conversation", st.session_state.chat_history)
 query = st.chat_input("Ask me anything...")
 
-print("Config======", config)
 if query:
     with st.chat_message("user"):
         st.markdown(query)
 
+    payload = {
+        "query": query,
+        "thread_id": st.session_state.thread_id
+    }
+
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            answer = agent.run(query, config)
-            ai_response = answer["messages"][-1].content
-            final_answer = ai_response.split("Final Answer:")[-1].strip()
-            st.markdown(final_answer)
+            response = requests.post(f"{API_URL}/chat", json=payload).json()
 
-    st.session_state.chat_history.append((query, final_answer))
+
+            answer = response["answer"]
+
+            st.markdown(answer)
+
+    st.session_state.chat_history.append((query, answer))
