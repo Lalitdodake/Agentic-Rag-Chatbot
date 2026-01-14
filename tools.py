@@ -3,6 +3,8 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents.middleware import wrap_tool_call
 from langchain.messages import ToolMessage
 from langchain.tools import tool
+from fastapi import UploadFile, File
+import shutil
 
 # INTERNAL FILES IMPORT
 from vector_db_handler import VectorDBHandler
@@ -19,7 +21,6 @@ os.environ['SERPER_API_KEY'] = os.environ.get('SERPER_API_KEY')
 
 vectordb_handler = VectorDBHandler()
 retriever = vectordb_handler.get_retriever()
-
 search = GoogleSerperAPIWrapper()
 
 
@@ -76,10 +77,13 @@ def init_agent():
     return agent
 
 
-def insert_new_document(uploaded_file):
-    file_path = os.path.join("./docs", uploaded_file.name)
+def insert_new_document(uploaded_file: UploadFile):
+    os.makedirs("./docs", exist_ok=True)
+
+    file_path = os.path.join("./docs", uploaded_file.filename)
+
     with open(file_path, "wb") as f:
-        f.write(uploaded_file.read())
+        shutil.copyfileobj(uploaded_file.file, f)
 
     vectordb_handler.ingest_uploaded_file(file_path)
 
