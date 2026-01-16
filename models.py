@@ -15,9 +15,7 @@ llm_model = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
     temperature=0,
     max_tokens=None,
-
     timeout=None,
-    max_retries=2,
-    # other params...
+    max_retries=2
 )
 
