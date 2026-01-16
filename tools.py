@@ -77,6 +77,7 @@ def init_agent():
     return agent
 
 
+
 def insert_new_document(uploaded_file: UploadFile):
     os.makedirs("./docs", exist_ok=True)
 

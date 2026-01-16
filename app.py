@@ -3,7 +3,9 @@ import uuid
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import requests
+import codecs
 
+decoder = codecs.getincrementaldecoder("utf-8")()
 print("Loading App File-------------------------")
 
 API_URL = "http://localhost:8211"
@@ -75,7 +77,13 @@ for user_msg, ai_msg in st.session_state.chat_history:
     with st.chat_message("assistant"):
         st.markdown(ai_msg)
 
-print("Chat Conversation", st.session_state.chat_history)
+# Generator Method for token Streaming
+
+def response_generator(payload_):
+    response_from_model= requests.post( f"{API_URL}/chat", json=payload_,stream=True).json()['answer']
+    for token in response_from_model:
+        yield token
+
 query = st.chat_input("Ask me anything...")
 
 if query:
@@ -89,11 +97,6 @@ if query:
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = requests.post(f"{API_URL}/chat", json=payload).json()
+            response = st.write_stream(response_generator(payload))
 
-
-            answer = response["answer"]
-
-            st.markdown(answer)
-
-    st.session_state.chat_history.append((query, answer))
+    st.session_state.chat_history.append((query, response))

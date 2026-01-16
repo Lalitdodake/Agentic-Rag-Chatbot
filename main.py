@@ -1,5 +1,5 @@
 # main.py
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, responses
 from pydantic import BaseModel
 import uuid
 import os
@@ -39,14 +39,12 @@ def insert_document(file: UploadFile = File(...)):
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     thread_id = req.thread_id
-    print("Thread ID: ", thread_id)
+    query = req.query
 
-
-    result = agent.run(req.query, thread_id)
+    result = agent.run(query, thread_id)
 
     ai_msg = result["messages"][-1].content
     final_answer = ai_msg.split("Final Answer:")[-1].strip()
-
+    print("final_answer",final_answer)
     return {
-        "answer": final_answer
-    }
+        "answer": final_answer}
