@@ -22,18 +22,20 @@ class AgentHandler:
             tools=tools,
             checkpointer= InMemorySaver(),
             system_prompt  = chat_prompt,
-            middleware = middleware
+            middleware = middleware,
+
         )
 
 
 
     def run(self, query, thread_id):
-        print("USER QUERY====", query)
+        try:
+            res = self.agent.invoke({"messages": [HumanMessage(f"{query}")]},
+                {"configurable": {"thread_id": thread_id}})
 
-        response = self.agent.invoke(
-            {"messages": [HumanMessage(f"{query}")]},
-            {"configurable": {"thread_id": thread_id}}
-        )
+            return res
 
-        return response
+        except Exception as e:
+            print("Error",e)
+
 
