@@ -1,0 +1,78 @@
+[
+  {
+    "question": "What is the current status of Project Zion for Pune Metro Line 3 integration?",
+    "answer": "Project Zion is currently At Risk due to a 48-hour downtime caused by smart-ticketing API integration issues with the Pune Metro backend."
+  },
+  {
+    "question": "Who is the lead manager for Project Zion and where is the project located?",
+    "answer": "The lead manager is Anjali Deshmukh, and the project is located at Hinjewadi Phase 3, Pune."
+  },
+  {
+    "question": "What are the revised deadlines for Project Zion?",
+    "answer": "The original milestone was February 12th, and the revised deadline is February 20th."
+  },
+  {
+    "question": "What action is required regarding Project Zion’s budget?",
+    "answer": "An immediate email update is required to Anjali Deshmukh to approve a ₹20,00,000 emergency server budget."
+  },
+  {
+    "question": "What is the budget status of Project Indra Data Center?",
+    "answer": "Project Indra is Over Budget."
+  },
+  {
+    "question": "What is the estimated budget and actual spend for Project Indra?",
+    "answer": "The estimated budget is ₹12,00,00,000, while the actual spend to date is ₹13,50,00,000."
+  },
+  {
+    "question": "Why did Project Indra exceed its budget?",
+    "answer": "Cooling system costs increased due to local electricity tariff changes in Pune."
+  },
+  {
+    "question": "Who should be notified when a project is over budget in Project Indra?",
+    "answer": "Rohan Mehta should be notified immediately to schedule a board review."
+  },
+  {
+    "question": "What is the current status of the Sahyadri Cloud Hybrid Migration project?",
+    "answer": "The project is On Track and the milestone has been successfully completed."
+  },
+  {
+    "question": "What financial benefit did the Sahyadri Cloud migration deliver?",
+    "answer": "The migration saved the client ₹15,00,000 per month in maintenance costs."
+  },
+  {
+    "question": "What is the next recommended action after completion of the Sahyadri Cloud project?",
+    "answer": "A congratulations email should be drafted to Vikram Singh and the Pune engineering team."
+  },
+  {
+    "question": "Which task is the most critical in the Pune Operations backlog?",
+    "answer": "Resolve Hinjewadi Hub Power Failure is the most critical task due to maximum urgency and impact."
+  },
+  {
+    "question": "What is the urgency and impact of the Quarterly GST Filing task?",
+    "answer": "Urgency is 7/10 and impact is 9/10."
+  },
+  {
+    "question": "How long is expected to resolve the Hinjewadi Hub power failure?",
+    "answer": "The estimated effort is 3 hours."
+  },
+  {
+    "question": "Which sales task has the highest revenue value in the West Pune territory?",
+    "answer": "Closing the deal with Kothrud Manufacturing Hub valued at ₹85,00,000."
+  },
+  {
+    "question": "Why is the Kothrud Manufacturing Hub deal considered urgent?",
+    "answer": "It has an urgency of 9/10 because a competitor is bidding."
+  },
+  {
+    "question": "Which HR task is critical for preventing delays in Project Zion?",
+    "answer": "Interviewing a Senior Architect for the Pune Metro Project is critical."
+  },
+  {
+    "question": "What is the impact of finalizing the Diwali bonus payroll?",
+    "answer": "It has an impact score of 10/10 because it affects employee morale."
+  },
+  {
+    "question": "What is the budget allocated for Project Gamma?",
+    "answer": "The information about Project Gamma is not available in the provided documents."
+  }
+]

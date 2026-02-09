@@ -1,0 +1,116 @@
+[
+  {
+    "question": "What is the current status of Project Zion for Pune Metro Line 3 integration?",
+    "answer": "The current status of Project Zion for Pune Metro Line 3 integration is: AT RISK.",
+    "contexts": "STRICTLY CONFIDENTIAL: PROJECT ZION STATUS REPORT\nProject Name: Zion Connectivity (Pune Metro Line 3 Integration)\nLead Manager: Anjali Deshmukh (a.deshmukh@zion-tech.in)\nLocation: Hinjewadi Phase 3, Pune. Current Status: AT RISK\nExecutive Summary:\nThe integration of the smart-ticketing API with the Pune Metro backend is facing a 48-hour\ndowntime. The on-site team in Hinjewadi reports hardware latency.",
+    "ground_truth": "Project Zion is currently At Risk due to a 48-hour downtime caused by smart-ticketing API integration issues with the Pune Metro backend."
+  },
+  {
+    "question": "Who is the lead manager for Project Zion and where is the project located?",
+    "answer": "Based on the context provided:\n\nThe lead manager for Project Zion is Anjali Deshmukh, and the project is located in Hinjewadi Phase 3, Pune.",
+    "contexts": "STRICTLY CONFIDENTIAL: PROJECT ZION STATUS REPORT\nProject Name: Zion Connectivity (Pune Metro Line 3 Integration)\nLead Manager: Anjali Deshmukh (a.deshmukh@zion-tech.in)\nLocation: Hinjewadi Phase 3, Pune. Current Status: AT RISK\nExecutive Summary:\nThe integration of the smart-ticketing API with the Pune Metro backend is facing a 48-hour\ndowntime. The on-site team in Hinjewadi reports hardware latency.",
+    "ground_truth": "The lead manager is Anjali Deshmukh, and the project is located at Hinjewadi Phase 3, Pune."
+  },
+  {
+    "question": "What are the revised deadlines for Project Zion?",
+    "answer": "The revised deadlines for the project are Feb 20th. \n\n(Note that the project name is not explicitly mentioned as \"Project Zion\" in the context, it is assumed that the context refers to \"Project Zion\" as no other project name is mentioned)",
+    "contexts": "Financials:\nProject Value: ■4,50,00,000\nCurrent Spend: ■3,80,00,000\nDeadlines:\nOriginal milestone: Feb 12th\nRevised: Feb 20th\nAction Required:\nNeeds immediate email update to Anjali Deshmukh regarding the ■20,00,000 emergency server\nbudget approval.",
+    "ground_truth": "The original milestone was February 12th, and the revised deadline is February 20th."
+  },
+  {
+    "question": "What action is required regarding Project Zion’s budget?",
+    "answer": "An immediate email update to Anjali Deshmukh regarding the ₹20,00,000 emergency server budget approval.",
+    "contexts": "Financials:\nProject Value: ■4,50,00,000\nCurrent Spend: ■3,80,00,000\nDeadlines:\nOriginal milestone: Feb 12th\nRevised: Feb 20th\nAction Required:\nNeeds immediate email update to Anjali Deshmukh regarding the ■20,00,000 emergency server\nbudget approval.",
+    "ground_truth": "An immediate email update is required to Anjali Deshmukh to approve a ₹20,00,000 emergency server budget."
+  },
+  {
+    "question": "What is the budget status of Project Indra Data Center?",
+    "answer": "The budget status of Project Indra Data Center is OVER BUDGET.",
+    "contexts": "PROJECT INDRA: INFRASTRUCTURE UPDATE\nProject Name: Indra Tier-4 Data Center Deployment\nLocation: Magarpatta City, Pune. Lead Manager: Rohan Mehta (r.mehta@indra-infra.com)\nCurrent Status: OVER BUDGET\nSummary:\nWhile the structural build is 100% complete, cooling system costs have spiked due to local\nelectricity tariff changes in Pune.",
+    "ground_truth": "Project Indra is Over Budget."
+  },
+  {
+    "question": "What is the estimated budget and actual spend for Project Indra?",
+    "answer": "Based on the context, here is the answer:\n\nEstimated Budget: ₹12,00,00,000\nActual Spend to Date: ₹13,50,00,000",
+    "contexts": "Estimated Budget: ■12,00,00,000\nActual Spend to Date: ■13,50,00,000\nStatus:\nOperational but awaiting final safety certification. Nudge Trigger:\nIf status is 'Over Budget', notify Rohan Mehta immediately to schedule a board review.",
+    "ground_truth": "The estimated budget is ₹12,00,00,000, while the actual spend to date is ₹13,50,00,000."
+  },
+  {
+    "question": "Why did Project Indra exceed its budget?",
+    "answer": "The project exceeded its budget because the costs of the cooling system spiked due to local electricity tariff changes in Pune.",
+    "contexts": "PROJECT INDRA: INFRASTRUCTURE UPDATE\nProject Name: Indra Tier-4 Data Center Deployment\nLocation: Magarpatta City, Pune. Lead Manager: Rohan Mehta (r.mehta@indra-infra.com)\nCurrent Status: OVER BUDGET\nSummary:\nWhile the structural build is 100% complete, cooling system costs have spiked due to local\nelectricity tariff changes in Pune.",
+    "ground_truth": "Cooling system costs increased due to local electricity tariff changes in Pune."
+  },
+  {
+    "question": "Who should be notified when a project is over budget in Project Indra?",
+    "answer": "Rohan Mehta \n\nThe context states that if the status is 'Over Budget', Rohan Mehta should be notified immediately to schedule a board review. Given that the Actual Spend to Date (■13,50,00,000) exceeds the Estimated Budget (■12,00,00,000), the project is over budget. Therefore, according to the context, Rohan Mehta should be notified.",
+    "contexts": "Estimated Budget: ■12,00,00,000\nActual Spend to Date: ■13,50,00,000\nStatus:\nOperational but awaiting final safety certification. Nudge Trigger:\nIf status is 'Over Budget', notify Rohan Mehta immediately to schedule a board review.",
+    "ground_truth": "Rohan Mehta should be notified immediately to schedule a board review."
+  },
+  {
+    "question": "What is the current status of the Sahyadri Cloud Hybrid Migration project?",
+    "answer": "The current status of the Sahyadri Cloud Hybrid Migration project is: ON TRACK.",
+    "contexts": "MILESTONE COMPLETION REPORT: SAHYADRI CLOUD\nProject Name: Sahyadri Cloud Hybrid Migration\nLead Manager: Vikram Singh (v.singh@sahyadri-solutions.com)\nLocation: Baner-Balewadi Tech Park, Pune. Current Status: ON TRACK\nSummary:\nAll local databases from the Pune facility have been successfully migrated to the hybrid cloud. Key Metrics:\nSavings: ■15,00,000 monthly\nTimeline: Completed 5 days ahead of schedule.",
+    "ground_truth": "The project is On Track and the milestone has been successfully completed."
+  },
+  {
+    "question": "What financial benefit did the Sahyadri Cloud migration deliver?",
+    "answer": "The Sahyadri Cloud migration delivered a financial benefit of ₹15,00,000 monthly in savings.",
+    "contexts": "MILESTONE COMPLETION REPORT: SAHYADRI CLOUD\nProject Name: Sahyadri Cloud Hybrid Migration\nLead Manager: Vikram Singh (v.singh@sahyadri-solutions.com)\nLocation: Baner-Balewadi Tech Park, Pune. Current Status: ON TRACK\nSummary:\nAll local databases from the Pune facility have been successfully migrated to the hybrid cloud. Key Metrics:\nSavings: ■15,00,000 monthly\nTimeline: Completed 5 days ahead of schedule.",
+    "ground_truth": "The migration saved the client ₹15,00,000 per month in maintenance costs."
+  },
+  {
+    "question": "What is the next recommended action after completion of the Sahyadri Cloud project?",
+    "answer": "There is no information provided in the context about the next recommended action after completion of the Sahyadri Cloud project. The context only provides a milestone completion report, highlighting the project's success in migrating local databases to the hybrid cloud, cost savings, and timeline achievement. \n\nHowever, a general assumption could be that the next recommended action would be to:\n\n- Review the project's overall success and lessons learned.\n- Ensure that all aspects of the migration have been thoroughly tested and validated.\n- Plan for ongoing maintenance, support, and potential future enhancements of the Sahyadri Cloud Hybrid Migration.\n\nBut based strictly on the given context, no specific next action can be determined.",
+    "contexts": "MILESTONE COMPLETION REPORT: SAHYADRI CLOUD\nProject Name: Sahyadri Cloud Hybrid Migration\nLead Manager: Vikram Singh (v.singh@sahyadri-solutions.com)\nLocation: Baner-Balewadi Tech Park, Pune. Current Status: ON TRACK\nSummary:\nAll local databases from the Pune facility have been successfully migrated to the hybrid cloud. Key Metrics:\nSavings: ■15,00,000 monthly\nTimeline: Completed 5 days ahead of schedule.",
+    "ground_truth": "A congratulations email should be drafted to Vikram Singh and the Pune engineering team."
+  },
+  {
+    "question": "Which task is the most critical in the Pune Operations backlog?",
+    "answer": "To determine the most critical task in the Pune Operations backlog, we need to consider both the urgency and the impact of each task. The task with the highest combined score of urgency and impact, or the task that is described in a way that signifies its priority, would be considered the most critical.\n\nTask 1: Resolve Hinjewadi Hub Power Failure\n- Urgency: 10/10\n- Impact: 10/10\n\nTask 2: Quarterly GST Filing\n- Urgency: 7/10\n- Impact: 9/10\n\nTask 3: Vendor Meet - Baner Office\n- Urgency: 4/10\n- Impact: 3/10\n\nGiven that Task 1 has both the highest urgency and impact scores (10/10 for both), it stands out as the most critical task. \n\nThe answer is: Task 1: Resolve Hinjewadi Hub Power Failure.",
+    "contexts": "OPERATIONS BACKLOG - PUNE REGIONAL OFFICE\nTask 1: Resolve Hinjewadi Hub Power Failure\nUrgency: 10/10\nImpact: 10/10\nEffort: 3 hours\nTask 2: Quarterly GST Filing\nUrgency: 7/10\nImpact: 9/10\nEffort: 5 hours\nTask 3: Vendor Meet - Baner Office\nUrgency: 4/10\nImpact: 3/10\nEffort: 1 hour",
+    "ground_truth": "Resolve Hinjewadi Hub Power Failure is the most critical task due to maximum urgency and impact."
+  },
+  {
+    "question": "What is the urgency and impact of the Quarterly GST Filing task?",
+    "answer": "Based on the context, the answer to the question is:\n\nUrgency: 7/10\nImpact: 9/10\n\nThis information is directly obtained from the context provided for Task 2: Quarterly GST Filing.",
+    "contexts": "OPERATIONS BACKLOG - PUNE REGIONAL OFFICE\nTask 1: Resolve Hinjewadi Hub Power Failure\nUrgency: 10/10\nImpact: 10/10\nEffort: 3 hours\nTask 2: Quarterly GST Filing\nUrgency: 7/10\nImpact: 9/10\nEffort: 5 hours\nTask 3: Vendor Meet - Baner Office\nUrgency: 4/10\nImpact: 3/10\nEffort: 1 hour",
+    "ground_truth": "Urgency is 7/10 and impact is 9/10."
+  },
+  {
+    "question": "How long is expected to resolve the Hinjewadi Hub power failure?",
+    "answer": "According to the context, it is expected to take 3 hours to resolve the Hinjewadi Hub power failure.",
+    "contexts": "OPERATIONS BACKLOG - PUNE REGIONAL OFFICE\nTask 1: Resolve Hinjewadi Hub Power Failure\nUrgency: 10/10\nImpact: 10/10\nEffort: 3 hours\nTask 2: Quarterly GST Filing\nUrgency: 7/10\nImpact: 9/10\nEffort: 5 hours\nTask 3: Vendor Meet - Baner Office\nUrgency: 4/10\nImpact: 3/10\nEffort: 1 hour",
+    "ground_truth": "The estimated effort is 3 hours."
+  },
+  {
+    "question": "Which sales task has the highest revenue value in the West Pune territory?",
+    "answer": "Based on the context, \n\nThe task with the highest revenue value is Task 1: Close Deal with Kothrud Manufacturing Hub, with a value of ₹85,00,000.",
+    "contexts": "REVENUE TASKS: WEST PUNE TERRITORY\nLead Manager: Priya Nair\nTask 1: Close Deal with Kothrud Manufacturing Hub\nValue: ■85,00,000\nUrgency: 9/10\nImpact: 10/10\nEffort: 2 hours\nTask 2: Follow up with Hadapsar Logistics\nValue: ■12,00,000\nUrgency: 5/10\nImpact: 6/10\nEffort: 45 minutes",
+    "ground_truth": "Closing the deal with Kothrud Manufacturing Hub valued at ₹85,00,000."
+  },
+  {
+    "question": "Why is the Kothrud Manufacturing Hub deal considered urgent?",
+    "answer": "Based on the context provided, the Kothrud Manufacturing Hub deal is considered urgent because of its urgency rating of 9/10, which indicates a high level of urgency. However, the context does not explicitly state \"why\" it is urgent, but it does provide an impact rating of 10/10 and a significant value of ■85,00,000, suggesting that the deal's timely closure could have a substantial positive effect or missed opportunity cost if delayed. \n\nAnswer: The context does not explicitly state why the Kothrud Manufacturing Hub deal is considered urgent, but it has an urgency rating of 9/10.",
+    "contexts": "REVENUE TASKS: WEST PUNE TERRITORY\nLead Manager: Priya Nair\nTask 1: Close Deal with Kothrud Manufacturing Hub\nValue: ■85,00,000\nUrgency: 9/10\nImpact: 10/10\nEffort: 2 hours\nTask 2: Follow up with Hadapsar Logistics\nValue: ■12,00,000\nUrgency: 5/10\nImpact: 6/10\nEffort: 45 minutes",
+    "ground_truth": "It has an urgency of 9/10 because a competitor is bidding."
+  },
+  {
+    "question": "Which HR task is critical for preventing delays in Project Zion?",
+    "answer": "There is no mention of an HR task or Project Zion in the provided context. The context only discusses the Q1 operational task list for the Operations & IT team, listing tasks such as server latency resolution, monthly internal newsletter, and client invoice follow-up. Therefore, based strictly on the context given, there is no information to answer the question about which HR task is critical for preventing delays in Project Zion.",
+    "contexts": "DEPARTMENT TASK BACKLOG\nDepartment: Operations & IT (Q1 Priority List)\nQ1 OPERATIONAL TASK LIST – OPERATIONS & IT TEAM\nInstructions:\nUse these tasks to build the daily priority schedule for the Operations & IT department. Task 1: Server Latency Resolution\nDepartment: IT Operations\nUrgency: 10/10 (The server is crashing every 2 hours)\nImpact: 10/10 (Affects all 5,000 active users)\nEffort: 4 hours (Requires deep focus and system diagnostics)\nTask 2: Monthly Internal Newsletter\nDepartment: Internal Communications (Ops Support)\nUrgency: 3/10 (Due in two weeks)\nImpact: 4/10 (General internal engagement)\nEffort: 2 hours\nTask 3: Client Invoice Follow-up (Client: Acme Corp)\nDepartment: Finance Operations\nUrgency: 8/10 (Payment is 5 days overdue)\nImpact: 7/10 (Directly affects cash flow)\nEffort: 30 minutes\nAutomation Rule:\nIf any task has an Urgency score above 9, the AI Copilot must proactively notify the Lead\nOperations Manager immediately.",
+    "ground_truth": "Interviewing a Senior Architect for the Pune Metro Project is critical."
+  },
+  {
+    "question": "What is the impact of finalizing the Diwali bonus payroll?",
+    "answer": "The impact of finalizing the Diwali bonus payroll is 10/10.",
+    "contexts": "HR & TALENT ACQUISITION - PUNE HQ\nTask 1: Interview Senior Architect for Pune Metro Project\nUrgency: 8/10\nImpact: 8/10\nEffort: 1 hour\nTask 2: Finalize Diwali Bonus Payroll\nUrgency: 6/10\nImpact: 10/10\nEffort: 4 hours",
+    "ground_truth": "It has an impact score of 10/10 because it affects employee morale."
+  },
+  {
+    "question": "What is the budget allocated for Project Gamma?",
+    "answer": "■12,00,00,000",
+    "contexts": "Estimated Budget: ■12,00,00,000\nActual Spend to Date: ■13,50,00,000\nStatus:\nOperational but awaiting final safety certification. Nudge Trigger:\nIf status is 'Over Budget', notify Rohan Mehta immediately to schedule a board review.",
+    "ground_truth": "The information about Project Gamma is not available in the provided documents."
+  }
+]
