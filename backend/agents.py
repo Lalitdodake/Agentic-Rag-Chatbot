@@ -31,8 +31,6 @@ class AgentHandler:
             res = self.agent.invoke({"messages": [HumanMessage(f"{query}")]},
                 {"configurable": {"thread_id": thread_id}})
 
-
-
             return res
 
         except Exception as e:
