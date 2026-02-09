@@ -26,7 +26,6 @@ class AgentHandler:
         )
 
 
-
     def run(self, query, thread_id):
         try:
             res = self.agent.invoke({"messages": [HumanMessage(f"{query}")]},
