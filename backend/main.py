@@ -11,7 +11,7 @@ app = FastAPI(title="Agentic RAG API")
 # -------- Initialize Agent (ONCE) --------
 print("Loading Agent")
 agent = init_agent()
-print("Agent Ready ✅")
+print("Agent Ready ")
 
 # -------- Schemas --------
 class ChatRequest(BaseModel):

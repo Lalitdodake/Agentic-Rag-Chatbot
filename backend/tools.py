@@ -30,13 +30,6 @@ def google_search(query):
     return search.results(query)
 
 
-# ----------- WEATHER TOOL -----------
-@tool
-def weather_tool(query):
-    """Get the latest weather details for a location."""
-    print('\n\n Weather tool is called===================')
-    return search.run(f"Weather {query}")
-
 
 # ----------- VECTOR DB SEARCH TOOL -----------
 @tool
@@ -48,8 +41,45 @@ def vectordb_search_tool(query):
     """
     print('\n\n VectorDB tool is called===================')
     docs = retriever.invoke(query)
-    print("Vector db Retrieved document")
+    print("Vector db Retrieved document", docs)
     return "\n".join([d.page_content for d in docs])
+
+# ------------------- Priority tool--------------
+@tool
+def priority_scoring_tool(urgency, impact, effort) -> str:
+    """
+    Calculates a priority score (0-10) for a task.
+    Inputs:
+    - urgency: 1-10 (10 being most urgent)
+    - impact: 1-10 (10 being highest stakeholder impact)
+    - effort: 1-5 (5 being highest effort/time)
+    """
+    # Logic: High Urgency and Impact increase score; High Effort slightly decreases it to prioritize 'quick wins'.
+    score = (int(urgency) * 0.5) + (int(impact) * 0.3) + ((6 - int(effort)) * 0.4)
+    final_score = min(round(score, 2), 10.0)
+
+    status = "P1 (Critical)" if final_score > 8 else "P2 (Medium)" if final_score > 5 else "P3 (Low)"
+    return f"Priority Score: {final_score}/10. Classification: {status}"
+
+
+# --- 2. NOTIFICATION / NUDGE TOOL ---
+@tool
+def send_notification_tool(recipient: str, message: str):
+    """Proactively notifies a team member. Use for urgent updates or status alerts."""
+    # Send notification to ui, for production we can integrate this with SMTP server to send mail.
+    notification_payload = f"🔔 NOTIFICATION SENT TO {recipient}: {message}"
+
+    return notification_payload
+
+
+# --- 3. KNOWLEDGE SUMMARIZER (Internal helper) ---
+@tool
+def multi_doc_summarizer(query: str):
+    """Retrieves multiple documents and provides a high-level executive summary."""
+    # This leverages your existing retriever but adds a 'summarization' intent
+    docs = retriever.invoke(query)
+    context = "\n".join([d.page_content for d in docs])
+    return f"EXECUTIVE SUMMARY BASED ON DOCS:\n{context[:1500]}..." # Simple truncation for reasoning
 
 
 @wrap_tool_call
@@ -66,7 +96,7 @@ def handle_tool_errors(request, handler):
 
 
 tools = [
-        weather_tool, vectordb_search_tool,google_search
+         vectordb_search_tool,google_search, priority_scoring_tool, send_notification_tool, multi_doc_summarizer
     ]
 
 middleware = [handle_tool_errors]
@@ -79,9 +109,9 @@ def init_agent():
 
 
 def insert_new_document(uploaded_file: UploadFile):
-    os.makedirs("./docs", exist_ok=True)
+    os.makedirs("../docs", exist_ok=True)
 
-    file_path = os.path.join("./docs", uploaded_file.filename)
+    file_path = os.path.join("../docs", uploaded_file.filename)
 
     with open(file_path, "wb") as f:
         shutil.copyfileobj(uploaded_file.file, f)

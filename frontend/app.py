@@ -10,16 +10,14 @@ print("Loading App File-------------------------")
 
 API_URL = "http://localhost:8211"
 
-# ---------------- Page Config ----------------
 st.set_page_config(
-    page_title="Agentic RAG Chatbot",
+    page_title="Business AI Copilot",
     layout="wide"
 )
 
-st.title("🤖 Agentic Chatbot")
+st.title("Business AI Copilot")
+st.subheader("Your autonomous business partner for intelligent data retrieval, executive summarization, and proactive workflow automation.")
 
-
-# ---------------- Session State ----------------
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -27,10 +25,8 @@ if "thread_id" not in st.session_state:
     st.session_state.thread_id = str(uuid.uuid4()).split('-')[1]
 
 print("Thread Id========", st.session_state.thread_id)
-# ---------------- Sidebar: Document Section ----------------
 with st.sidebar:
-    # ---------------- New Chat ----------------
-    if st.button("🆕 New Chat", use_container_width=True):
+    if st.button(" New Chat", use_container_width=True):
         st.session_state.chat_history = []
         st.session_state.thread_id = str(uuid.uuid4()).split('-')[1]
         st.rerun()
@@ -38,9 +34,9 @@ with st.sidebar:
     st.divider()
 
     # ---------------- Documents ----------------
-    st.header("📄 Documents")
+    st.header(" Documents")
 
-    document_store_path = "./docs"
+    document_store_path = "../docs"
     os.makedirs(document_store_path, exist_ok=True)
 
     st.subheader("Uploaded Files")
@@ -68,8 +64,7 @@ with st.sidebar:
         st.success(f"{len(uploaded_files)} file(s) indexed")
 
 
-# ---------------- Chat Area ----------------
-st.subheader("💬 Chat")
+st.subheader(" Chat")
 
 for user_msg, ai_msg in st.session_state.chat_history:
     with st.chat_message("user"):
@@ -81,6 +76,9 @@ for user_msg, ai_msg in st.session_state.chat_history:
 
 def response_generator(payload_):
     response_from_model= requests.post( f"{API_URL}/chat", json=payload_,stream=True).json()['answer']
+    if "NOTIFICATION SENT" in response_from_model:
+        st.toast(response_from_model, icon="🔔")
+
     for token in response_from_model:
         yield token
 

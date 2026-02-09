@@ -1,7 +1,6 @@
 from langchain.agents import create_agent
 from langchain.messages import  HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver
-from PyMongo import insert_into_db
 
 from models import llm_model
 from prompt import chat_prompt
@@ -32,6 +31,8 @@ class AgentHandler:
         try:
             res = self.agent.invoke({"messages": [HumanMessage(f"{query}")]},
                 {"configurable": {"thread_id": thread_id}})
+
+
 
             return res
 

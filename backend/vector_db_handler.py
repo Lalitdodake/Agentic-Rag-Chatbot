@@ -3,7 +3,8 @@ import os
 from models import embedding_model
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
+from langchain_experimental.text_splitter import SemanticChunker
+import datetime
 
 def get_file_name(file_path):
     return os.path.basename(file_path)
@@ -31,29 +32,44 @@ class VectorDBHandler:
         else:
             print("No existing vector DB found. A new one will be created.")
 
-
     def ingest_uploaded_file(self, file_path):
         """Ingest a single uploaded PDF dynamically"""
         loader = PyPDFLoader(file_path)
         docs = loader.load()
+        for doc in docs:
+            doc.metadata["file_name"] = file_path
+            doc.metadata['ingested_at'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        split_docs = splitter.split_documents(docs)
-        # print("split docs", split_docs)
-        file_name = get_file_name(file_path)
-        print("file name", file_name)
-        if self.vectorstore is None:
-            print("CREATING A NEW VECTOR DB AND INSERTING DOCUMENT")
-            self.vectorstore = Chroma.from_documents(
-                split_docs,
-                self.embedding,
-                persist_directory=self.persist_directory
-            )
-        else:
-            print("INSERTING DOCUMENT IN EXISTING VECTOR DB")
-            self.vectorstore.add_documents(split_docs)
+        semantic_chunker = SemanticChunker(self.embedding, breakpoint_threshold_type="percentile")
+        semantic_chunks = semantic_chunker.create_documents([d.page_content for d in docs])
+        for semantic_chunk in semantic_chunks:
+            print(semantic_chunk.page_content)
+            print(len(semantic_chunk.page_content))
 
-        print(f" Uploaded and ingested {len(split_docs)} new chunks.")
+
+
+        try:
+
+            if self.vectorstore is None:
+                print("CREATING A NEW VECTOR DB AND INSERTING DOCUMENT")
+                self.vectorstore = Chroma.from_documents(
+                    semantic_chunks,
+                    self.embedding,
+                    persist_directory=self.persist_directory
+                )
+            else:
+                print("INSERTING DOCUMENT IN EXISTING VECTOR DB")
+                self.vectorstore.add_documents(semantic_chunks)
+
+
+            print(f" Uploaded and ingested {len(semantic_chunks)} new chunks.")
+        except Exception as e:
+            print(e)
+            # if document is not embedded into the vectorstore: then delete the pdf
+            os.remove(file_path)
+
+
+
 
     def get_retriever(self):
         """Return retriever for querying the vector store"""

@@ -4,6 +4,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from dotenv import load_dotenv
 load_dotenv()
+import os
+print("HF_TOKEN FOUND:", bool(os.getenv("HF_TOKEN")))
 
 
 embedding_model = HuggingFaceEmbeddings(
